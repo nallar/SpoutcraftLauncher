@@ -58,11 +58,12 @@ import org.spoutcraft.launcher.yml.LibrariesYML;
 import org.spoutcraft.launcher.yml.MinecraftYML;
 import org.spoutcraft.launcher.yml.SpoutcraftBuild;
 
-public class UpdateThread extends Thread{
+public class UpdateThread extends Thread {
 	private final AtomicBoolean waiting = new AtomicBoolean(false);
 	private final AtomicBoolean valid = new AtomicBoolean(false);
 	private final AtomicBoolean finished = new AtomicBoolean(false);
 	private DownloadListener listener;
+
 	public UpdateThread() {
 		super("Update Thread");
 	}
@@ -113,8 +114,8 @@ public class UpdateThread extends Thread{
 		} else {
 			try {
 				sleep(100);
+			} catch (InterruptedException ignore) {
 			}
-			catch (InterruptedException ignore) { }
 		}
 
 		finished.set(true);
@@ -297,7 +298,6 @@ public class UpdateThread extends Thread{
 		} else {
 			Utils.copy(mcCache, new File(Launcher.getGameUpdater().getBinDir(), "jinput.jar"));
 		}
-
 
 		mcCache = new File(Launcher.getGameUpdater().getBinCacheDir(), "lwjgl.jar");
 		if (!mcCache.exists() || !lwjglMD5.equals(MD5Utils.getMD5(mcCache))) {

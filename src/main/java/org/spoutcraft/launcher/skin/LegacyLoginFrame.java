@@ -83,7 +83,6 @@ public class LegacyLoginFrame extends LoginFrame implements ActionListener, KeyL
 	private JButton loginSkin2;
 	private List<JButton> loginSkin2Image;
 	private JComboBox version = new JComboBox();
-
 	// Fonts
 	private Font arial11 = new Font("Arial", Font.PLAIN, 11);
 	private Font arial12 = new Font("Arial", Font.PLAIN, 12);
@@ -211,8 +210,9 @@ public class LegacyLoginFrame extends LoginFrame implements ActionListener, KeyL
 		editorPane.setOpaque(false);
 
 		AsyncRSSFeed rss = new AsyncRSSFeed(editorPane);
-		if (getSavedUsernames().size() > 0)
+		if (getSavedUsernames().size() > 0) {
 			rss.setUser(getSavedUsernames().get(0));
+		}
 		rss.execute();
 
 		JLabel trans2;

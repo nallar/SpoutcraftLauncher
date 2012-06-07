@@ -55,8 +55,8 @@ public class ImageUtils {
 				conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 				HttpURLConnection.setFollowRedirects(true);
 				conn.setUseCaches(false);
-				((HttpURLConnection)conn).setInstanceFollowRedirects(true);
-				int response = ((HttpURLConnection)conn).getResponseCode();
+				((HttpURLConnection) conn).setInstanceFollowRedirects(true);
+				int response = ((HttpURLConnection) conn).getResponseCode();
 				if (response == HttpURLConnection.HTTP_OK) {
 					originalImage = ImageIO.read(conn.getInputStream());
 					if (originalImage.getWidth() != SKIN_WIDTH || originalImage.getHeight() != SKIN_HEIGHT) {
@@ -69,7 +69,8 @@ public class ImageUtils {
 					}
 					success = true;
 				}
-			} catch (Exception e) { }
+			} catch (Exception e) {
+			}
 			if (!success) {
 				originalImage = ImageIO.read(Resources.getResourceAsStream("char.png"));
 			}

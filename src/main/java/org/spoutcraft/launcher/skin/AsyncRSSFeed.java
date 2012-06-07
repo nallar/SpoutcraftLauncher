@@ -34,6 +34,7 @@ import java.util.Random;
 import javax.swing.JTextPane;
 
 import org.jdesktop.swingworker.SwingWorker;
+
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
@@ -67,8 +68,8 @@ public class AsyncRSSFeed extends SwingWorker<Object, Object> {
 			conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 			HttpURLConnection.setFollowRedirects(true);
 			conn.setUseCaches(false);
-			((HttpURLConnection)conn).setInstanceFollowRedirects(true);
-			int response = ((HttpURLConnection)conn).getResponseCode();
+			((HttpURLConnection) conn).setInstanceFollowRedirects(true);
+			int response = ((HttpURLConnection) conn).getResponseCode();
 
 			if (HttpURLConnection.HTTP_OK == response) {
 				StringBuilder sb = new StringBuilder();
@@ -88,7 +89,6 @@ public class AsyncRSSFeed extends SwingWorker<Object, Object> {
 				} else {
 					editorPane.setText(getErrorMessage());
 				}
-
 			} else {
 				editorPane.setText(getErrorMessage());
 			}

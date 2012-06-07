@@ -47,6 +47,7 @@ import java.util.logging.StreamHandler;
 import javax.swing.UIManager;
 
 import org.apache.commons.io.IOUtils;
+
 import com.beust.jcommander.JCommander;
 
 import org.spoutcraft.launcher.api.Launcher;
@@ -64,6 +65,7 @@ import org.spoutcraft.launcher.skin.DefaultSkinLoader;
 
 public class Main {
 	private static final boolean DEBUG_MODE = true;
+
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
 		final long startupTime = start;
@@ -113,7 +115,7 @@ public class Main {
 		setLookAndFeel();
 
 		if (DEBUG_MODE) {
-			System.out.println("Initial launcher organization and look and feel time took " + (System.currentTimeMillis() - start)	 + " ms");
+			System.out.println("Initial launcher organization and look and feel time took " + (System.currentTimeMillis() - start) + " ms");
 			start = System.currentTimeMillis();
 		}
 
@@ -126,23 +128,23 @@ public class Main {
 		Settings.setLauncherSelectedBuild(launcherBuild);
 
 		if (DEBUG_MODE) {
-			System.out.println("Launcher settings took " + (System.currentTimeMillis() - start)	 + " ms");
+			System.out.println("Launcher settings took " + (System.currentTimeMillis() - start) + " ms");
 			start = System.currentTimeMillis();
 		}
 
 		// Set up the Launcher and load skins
 		new Launcher(new SimpleGameUpdater(), new SimpleGameLauncher(), key);
-		((SimpleGameUpdater)Launcher.getGameUpdater()).start();
+		((SimpleGameUpdater) Launcher.getGameUpdater()).start();
 		SkinManager skinManager = Launcher.getSkinManager();
 		skinManager.loadSkins(skinDir);
 
 		if (DEBUG_MODE) {
-			System.out.println("Launcher skin manager took " + (System.currentTimeMillis() - start)	 + " ms");
+			System.out.println("Launcher skin manager took " + (System.currentTimeMillis() - start) + " ms");
 			start = System.currentTimeMillis();
 		}
 
 		if (DEBUG_MODE) {
-			System.out.println("Launcher options frame loading took " + (System.currentTimeMillis() - start)	 + " ms");
+			System.out.println("Launcher options frame loading took " + (System.currentTimeMillis() - start) + " ms");
 			start = System.currentTimeMillis();
 		}
 
@@ -154,7 +156,7 @@ public class Main {
 		skinManager.addSkin(defaultSkin);
 
 		if (DEBUG_MODE) {
-			System.out.println("Launcher default skin loading took " + (System.currentTimeMillis() - start)	 + " ms");
+			System.out.println("Launcher default skin loading took " + (System.currentTimeMillis() - start) + " ms");
 			start = System.currentTimeMillis();
 		}
 
@@ -172,7 +174,7 @@ public class Main {
 		}
 
 		if (DEBUG_MODE) {
-			System.out.println("Launcher skin loading took " + (System.currentTimeMillis() - start)	 + " ms");
+			System.out.println("Launcher skin loading took " + (System.currentTimeMillis() - start) + " ms");
 			start = System.currentTimeMillis();
 		}
 
@@ -196,17 +198,15 @@ public class Main {
 				try {
 					UIManager.setLookAndFeel(new com.sun.java.swing.plaf.windows.WindowsLookAndFeel());
 					laf = true;
+				} catch (Exception ignore) {
 				}
-				catch (Exception ignore) { }
 			}
 
 			if (!laf) {
 				// Can't guess the laf for other os's as easily
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			}
-
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("There was an error setting the Look and Feel: " + e);
 		}
 	}
@@ -246,7 +246,6 @@ public class Main {
 						while ((length = input.read(buf)) > 0) {
 							output.write(buf, 0, length);
 						}
-
 					} catch (Exception e) {
 						e.printStackTrace();
 					} finally {
@@ -255,13 +254,15 @@ public class Main {
 						} catch (Exception ignored) {
 						}
 						try {
-							if (output != null)
+							if (output != null) {
 								output.close();
+							}
 						} catch (Exception e) {
 						}
 					}
 				}
-			} catch (Exception e) { }
+			} catch (Exception e) {
+			}
 		}
 
 		return new YAMLProcessor(file, false, YAMLFormat.EXTENDED);

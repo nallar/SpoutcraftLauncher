@@ -47,7 +47,6 @@ import org.spoutcraft.launcher.launch.MinecraftLauncher;
 public class SimpleGameLauncher extends GameLauncher implements WindowListener {
 	private static final long serialVersionUID = 454654568463524665L;
 	private MinecraftAppletEnglober minecraft;
-
 	public static final int RETRYING_LAUNCH = -1;
 	public static final int ERROR_IN_LAUNCH = 0;
 	public static final int SUCCESSFUL_LAUNCH = 1;
@@ -64,12 +63,12 @@ public class SimpleGameLauncher extends GameLauncher implements WindowListener {
 
 	@Override
 	public void runGame(String user, String session, String downloadTicket, String mcpass) {
-		((SimpleGameUpdater)Launcher.getGameUpdater()).setWaiting(true);
-		while (!((SimpleGameUpdater)Launcher.getGameUpdater()).isFinished()) {
+		((SimpleGameUpdater) Launcher.getGameUpdater()).setWaiting(true);
+		while (!((SimpleGameUpdater) Launcher.getGameUpdater()).isFinished()) {
 			try {
 				Thread.sleep(100);
+			} catch (InterruptedException ignore) {
 			}
-			catch (InterruptedException ignore) { }
 		}
 		Applet applet = null;
 		try {
@@ -132,7 +131,8 @@ public class SimpleGameLauncher extends GameLauncher implements WindowListener {
 
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e1) { }
+			} catch (InterruptedException e1) {
+			}
 		}
 		System.out.println("Exiting Spoutcraft Launcher");
 		for (Frame f : Frame.getFrames()) {

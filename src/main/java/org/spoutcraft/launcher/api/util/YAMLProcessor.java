@@ -84,12 +84,11 @@ public class YAMLProcessor extends YAMLNode {
 	protected final File file;
 	protected String header = null;
 	protected YAMLFormat format;
-
 	/*
-	 * Map from property key to comment. Comment may have multiple lines that are newline-separated.
-	 * Comments support based on ZerothAngel's AnnotatedYAMLConfiguration
-	 * Comments are only supported with YAMLFormat.EXTENDED
-	 */
+		 * Map from property key to comment. Comment may have multiple lines that are newline-separated.
+		 * Comments support based on ZerothAngel's AnnotatedYAMLConfiguration
+		 * Comments are only supported with YAMLFormat.EXTENDED
+		 */
 	private final Map<String, String> comments = new HashMap<String, String>();
 
 	public YAMLProcessor(File file, boolean writeDefaults, YAMLFormat format) {
@@ -113,7 +112,6 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Loads the configuration file.
-	 *
 	 * @throws java.io.IOException
 	 */
 	public void load() throws IOException {
@@ -121,7 +119,9 @@ public class YAMLProcessor extends YAMLNode {
 
 		try {
 			stream = getInputStream();
-			if (stream == null) throw new IOException("Stream is null!");
+			if (stream == null) {
+				throw new IOException("Stream is null!");
+			}
 			read(yaml.load(new UnicodeReader(stream)));
 		} catch (YAMLProcessorException e) {
 			root = new LinkedHashMap<String, Object>();
@@ -138,7 +138,6 @@ public class YAMLProcessor extends YAMLNode {
 	/**
 	 * Set the header for the file as a series of lines that are terminated
 	 * by a new line sequence.
-	 *
 	 * @param headerLines header lines to prepend
 	 */
 	public void setHeader(String... headerLines) {
@@ -159,7 +158,6 @@ public class YAMLProcessor extends YAMLNode {
 	 * YAML data output on configuration save. The header is
 	 * printed raw and so must be manually commented if used. A new line will
 	 * be appended after the header, however, if a header is provided.
-	 *
 	 * @param header header to prepend
 	 */
 	public void setHeader(String header) {
@@ -168,7 +166,6 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Return the set header.
-	 *
 	 * @return
 	 */
 	public String getHeader() {
@@ -177,7 +174,6 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Saves the configuration to disk. All errors are clobbered.
-	 *
 	 * @return true if it was successful
 	 */
 	public boolean save() {
@@ -191,7 +187,9 @@ public class YAMLProcessor extends YAMLNode {
 
 		try {
 			stream = getOutputStream();
-			if (stream == null) return false;
+			if (stream == null) {
+				return false;
+			}
 			OutputStreamWriter writer = new OutputStreamWriter(stream, "UTF-8");
 			if (header != null) {
 				writer.append(header);
@@ -253,7 +251,6 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Returns a root-level comment.
-	 *
 	 * @param key the property key
 	 * @return the comment or <code>null</code>
 	 */
@@ -271,9 +268,8 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Set a root-level comment.
-	 *
 	 * @param comment the comment. May be <code>null</code>, in which case the comment
-	 *                is removed.
+	 * is removed.
 	 */
 	public void setComment(String key, String... comment) {
 		if (comment != null && comment.length > 0) {
@@ -291,7 +287,6 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Returns root-level comments.
-	 *
 	 * @return map of root-level comments
 	 */
 	public Map<String, String> getComments() {
@@ -300,7 +295,6 @@ public class YAMLProcessor extends YAMLNode {
 
 	/**
 	 * Set root-level comments from a map.
-	 *
 	 * @param comments comment map
 	 */
 	public void setComments(Map<String, String> comments) {
@@ -313,7 +307,6 @@ public class YAMLProcessor extends YAMLNode {
 	/**
 	 * This method returns an empty ConfigurationNode for using as a
 	 * default in methods that select a node from a node list.
-	 *
 	 * @return
 	 */
 	public static YAMLNode getEmptyNode(boolean writeDefaults) {

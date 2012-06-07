@@ -93,8 +93,9 @@ public class CommonSkinManager implements SkinManager {
 			// TODO YAML skin
 		}
 
-		if (!locked)
+		if (!locked) {
 			manager.unlock(key);
+		}
 
 		return result;
 	}

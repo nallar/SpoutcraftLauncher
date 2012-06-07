@@ -166,7 +166,6 @@ public abstract class LoginFrame extends JFrame implements DownloadListener {
 			} catch (EOFException e) {
 			}
 			dis.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -35,7 +35,6 @@ import java.util.zip.GZIPInputStream;
 
 /**
  * Java Binary patcher (based on bspatch by Colin Percival)
- *
  * @author Joe Desbonnet, joe@galway.net
  */
 public class JBPatch {
@@ -45,7 +44,6 @@ public class JBPatch {
 	/**
 	 * Run JBPatch from the command line. Params: oldfile newfile patchfile.
 	 * newfile will be created.
-	 *
 	 * @param arg
 	 * @throws IOException
 	 */

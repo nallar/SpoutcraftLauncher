@@ -99,7 +99,8 @@ public class MinecraftClassLoader extends URLClassLoader {
 				try {
 					this.loadClass(className);
 					preloaded++;
-				} catch (Throwable ignore) { }
+				} catch (Throwable ignore) {
+				}
 			}
 			this.preloaded.add(className);
 		}

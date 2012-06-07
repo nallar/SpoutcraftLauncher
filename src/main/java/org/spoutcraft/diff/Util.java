@@ -31,7 +31,6 @@ import java.io.InputStream;
 
 /**
  * Java Binary patcher (based on bspatch by Colin Percival)
- *
  * @author Joe Desbonnet, joe@galway.net
  */
 public class Util {
@@ -64,7 +63,6 @@ public class Util {
 
 	/**
 	 * Equiv of C library memcmp().
-	 *
 	 * @param s1
 	 * @param s1offset
 	 * @param s2

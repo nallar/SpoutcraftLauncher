@@ -83,7 +83,6 @@ public class DefaultLoginFrame extends LoginFrame implements ActionListener, Key
 	private JButton loginSkin2;
 	private List<JButton> loginSkin2Image;
 	private JComboBox version = new JComboBox();
-
 	// Fonts \\
 	private Font arial11 = new Font("Arial", Font.PLAIN, 11);
 	private Font arial12 = new Font("Arial", Font.PLAIN, 12);
@@ -131,7 +130,6 @@ public class DefaultLoginFrame extends LoginFrame implements ActionListener, Key
 		passwordField = new JPasswordField();
 		passwordField.setFont(arial11);
 		passwordField.setBounds(143, 42, 119, 22);
-
 
 		JLabel versionLabel = new JLabel("Version: ");
 		versionLabel.setFont(arial11);
@@ -367,8 +365,9 @@ public class DefaultLoginFrame extends LoginFrame implements ActionListener, Key
 		if (e.getActionCommand().equalsIgnoreCase("login")) {
 			disable();
 			doLogin(usernameField.getSelectedItem().toString(), new String(passwordField.getPassword()));
-			if (rememberCheckbox.isSelected())
+			if (rememberCheckbox.isSelected()) {
 				saveUsername(usernameField.getSelectedItem().toString(), new String(passwordField.getPassword()));
+			}
 		} else if (e.getActionCommand().equals(loginSkin1.getActionCommand())) {
 			disable();
 			doLogin(loginSkin1.getText());
@@ -408,8 +407,7 @@ public class DefaultLoginFrame extends LoginFrame implements ActionListener, Key
 					int result = JOptionPane.showConfirmDialog(getParent(), "Would you like to run in offline mode?", "Unable to connect to minecraft.net", JOptionPane.YES_NO_OPTION);
 					if (result == JOptionPane.YES_OPTION) {
 						Launcher.getGameLauncher().runGame(Launcher.getGameUpdater().getMinecraftUser(), "", "", "");
-					}
-					else {
+					} else {
 						enable();
 					}
 				}

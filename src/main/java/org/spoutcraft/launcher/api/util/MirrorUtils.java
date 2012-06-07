@@ -75,7 +75,7 @@ public class MirrorUtils {
 			MirrorUtils.mirrors = goodMirrors;
 		}
 
-		for (String mirror : MirrorUtils.mirrors){
+		for (String mirror : MirrorUtils.mirrors) {
 			String lookup = "http://" + mirror + "/" + mirrorURI;
 			if (isAddressReachable(lookup, 1000)) {
 				return lookup;
@@ -141,9 +141,11 @@ class MirrorComparator implements Comparator<String> {
 	final Map<String, Integer> values = new HashMap<String, Integer>();
 	final Random rand = new Random();
 	final Map<String, Integer> mirrors;
+
 	public MirrorComparator(Map<String, Integer> mirrors) {
 		this.mirrors = mirrors;
 	}
+
 	public int compare(String o1, String o2) {
 		return getValue(o2) - getValue(o1);
 	}

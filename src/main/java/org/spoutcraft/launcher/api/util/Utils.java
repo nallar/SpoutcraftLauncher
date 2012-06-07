@@ -62,8 +62,9 @@ public class Utils {
 	private static StartupParameters params = null;
 
 	public static File getWorkingDirectory() {
-		if (workDir == null)
+		if (workDir == null) {
 			workDir = getWorkingDirectory("spoutcraft");
+		}
 		return workDir;
 	}
 
@@ -173,13 +174,14 @@ public class Utils {
 	}
 
 	private static OS cached = null;
+
 	public static OS getOperatingSystem() {
 		if (cached == null) {
 			cached = lookupOperatingSystem();
 		}
 		return cached;
 	}
-	
+
 	private static OS lookupOperatingSystem() {
 		String osName = System.getProperty("os.name").toLowerCase();
 		if (osName.contains("win")) {
@@ -280,8 +282,9 @@ public class Utils {
 		if (!dest.exists()) {
 			dest.mkdirs();
 		} else {
-			if (!dest.isDirectory())
+			if (!dest.isDirectory()) {
 				throw new IllegalArgumentException("The destination was not a directory");
+			}
 			FileUtils.cleanDirectory(dest);
 		}
 		Enumeration<JarEntry> entries = jar.entries();

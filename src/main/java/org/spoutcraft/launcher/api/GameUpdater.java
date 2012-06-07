@@ -34,11 +34,9 @@ public abstract class GameUpdater extends SpoutcraftDirectories implements Downl
 	private String downloadTicket = "1";
 	private String minecraftPass = "";
 	private String minecraftSession = "";
-
 	public final String baseURL = "http://s3.amazonaws.com/MinecraftDownload/";
 	public final String latestLWJGLURL = "http://get.spout.org/lib/lwjgl/";
 	public final String spoutcraftMirrors = "http://get.spout.org/mirrors.yml";
-
 	private DownloadListener listener;
 
 	public void setMinecraftUser(String user) {
@@ -82,8 +80,9 @@ public abstract class GameUpdater extends SpoutcraftDirectories implements Downl
 	}
 
 	public void stateChanged(String message, float progress) {
-		if (listener != null)
+		if (listener != null) {
 			listener.stateChanged(message, progress);
+		}
 	}
 
 	public void runGame() {

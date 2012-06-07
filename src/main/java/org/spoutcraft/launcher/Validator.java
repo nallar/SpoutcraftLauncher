@@ -36,13 +36,13 @@ import org.spoutcraft.launcher.util.MD5Utils;
 import org.spoutcraft.launcher.yml.LibrariesYML;
 import org.spoutcraft.launcher.yml.SpoutcraftBuild;
 
-public class Validator implements Runnable{
+public class Validator implements Runnable {
 	private boolean passed = false;
 
 	public void run() {
-		((SimpleGameUpdater)Launcher.getGameUpdater()).setStartValidationTime(System.currentTimeMillis());
+		((SimpleGameUpdater) Launcher.getGameUpdater()).setStartValidationTime(System.currentTimeMillis());
 		validate();
-		((SimpleGameUpdater)Launcher.getGameUpdater()).validationFinished(passed);
+		((SimpleGameUpdater) Launcher.getGameUpdater()).validationFinished(passed);
 	}
 
 	private void validate() {

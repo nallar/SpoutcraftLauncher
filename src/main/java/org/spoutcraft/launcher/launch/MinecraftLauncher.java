@@ -41,6 +41,7 @@ import org.spoutcraft.launcher.yml.SpoutcraftBuild;
 
 public class MinecraftLauncher {
 	private static MinecraftClassLoader loader = null;
+
 	public static MinecraftClassLoader getClassLoader() {
 		if (loader == null) {
 			File mcBinFolder = new File(Utils.getWorkingDirectory(), "bin");
@@ -79,8 +80,7 @@ public class MinecraftLauncher {
 				urls[4] = spoutcraftJar.toURI().toURL();
 
 				loader = new MinecraftClassLoader(urls, ClassLoader.getSystemClassLoader(), spoutcraftJar, files);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

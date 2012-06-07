@@ -43,7 +43,6 @@ import java.util.zip.GZIPOutputStream;
  * Running this on large files will probably require an increae of the default
  * maximum heap size (use java -Xmx200m)
  * </p>
- *
  * @author Joe Desbonnet, joe@galway.net
  */
 public class JBDiff {
@@ -152,7 +151,6 @@ public class JBDiff {
 	 * Fast suffix sporting.
 	 * Larsson and Sadakane's qsufsort algorithm.
 	 * See http://www.cs.lth.se/Research/Algorithms/Papers/jesper5.ps
-	 *
 	 * @param I
 	 * @param V
 	 * @param oldBuf
@@ -230,7 +228,6 @@ public class JBDiff {
 	/**
 	 * Count the number of bytes that match in oldBuf (starting at offset oldOffset)
 	 * and newBuf (starting at offset newOffset).
-	 *
 	 * @param oldBuf
 	 * @param oldOffset
 	 * @param newBuf
@@ -372,8 +369,9 @@ public class JBDiff {
 				int Sf = 0;
 				int lenf = 0;
 				for (i = 0; (lastscan + i < scan) && (lastpos + i < oldsize); ) {
-					if (oldBuf[lastpos + i] == newBuf[lastscan + i])
+					if (oldBuf[lastpos + i] == newBuf[lastscan + i]) {
 						s++;
+					}
 					i++;
 					if (s * 2 - i > Sf * 2 - lenf) {
 						Sf = s;
@@ -386,8 +384,9 @@ public class JBDiff {
 					s = 0;
 					int Sb = 0;
 					for (i = 1; (scan >= lastscan + i) && (pos.value >= i); i++) {
-						if (oldBuf[pos.value - i] == newBuf[scan - i])
+						if (oldBuf[pos.value - i] == newBuf[scan - i]) {
 							s++;
+						}
 						if (s * 2 - i > Sb * 2 - lenb) {
 							Sb = s;
 							lenb = i;
@@ -481,7 +480,6 @@ public class JBDiff {
 	/**
 	 * Run JBDiff from the command line. Params: oldfile newfile difffile.
 	 * diff file will be created.
-	 *
 	 * @param arg
 	 * @throws IOException
 	 */

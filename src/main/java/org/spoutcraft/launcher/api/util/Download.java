@@ -35,7 +35,6 @@ import org.spoutcraft.launcher.api.skin.exceptions.DownloadException;
 
 public class Download implements Runnable {
 	private static final long TIMEOUT = 30000;
-
 	private URL url;
 	private long size = -1;
 	private long downloaded = 0;
@@ -54,7 +53,7 @@ public class Download implements Runnable {
 	}
 
 	@SuppressWarnings("unused")
-	public void run(){
+	public void run() {
 		try {
 			URLConnection conn = url.openConnection();
 			conn.setDoInput(true);
@@ -63,10 +62,10 @@ public class Download implements Runnable {
 			conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.162 Safari/535.19");
 			HttpURLConnection.setFollowRedirects(true);
 			conn.setUseCaches(false);
-			((HttpURLConnection)conn).setInstanceFollowRedirects(true);
-			int response = ((HttpURLConnection)conn).getResponseCode();
+			((HttpURLConnection) conn).setInstanceFollowRedirects(true);
+			int response = ((HttpURLConnection) conn).getResponseCode();
 			InputStream in = getConnectionInputStream(conn);
-			
+
 			size = conn.getContentLength();
 			outFile = new File(outPath);
 			outFile.delete();
@@ -113,7 +112,6 @@ public class Download implements Runnable {
 			};
 			progress.start();
 
-
 			fos.getChannel().transferFrom(rbc, 0, size > 0 ? size : Integer.MAX_VALUE);
 			in.close();
 			rbc.close();
@@ -146,7 +144,9 @@ public class Download implements Runnable {
 				} catch (InterruptedException ignore) {
 				}
 			}
-			if (is[0] != null) continue;
+			if (is[0] != null) {
+				continue;
+			}
 			try {
 				stream.interrupt();
 				stream.join();
@@ -161,7 +161,9 @@ public class Download implements Runnable {
 	}
 
 	private void stateChanged() {
-		if (listener != null) listener.stateChanged(outPath, getProgress());
+		if (listener != null) {
+			listener.stateChanged(outPath, getProgress());
+		}
 	}
 
 	public void setListener(DownloadListener listener) {

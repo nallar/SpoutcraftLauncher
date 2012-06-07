@@ -36,7 +36,6 @@ import java.io.IOException;
 public class FileUtils {
 	/**
 	 * Deletes a directory recursively.
-	 *
 	 * @param directory directory to delete
 	 * @throws IOException in case deletion is unsuccessful
 	 */
@@ -63,7 +62,6 @@ public class FileUtils {
 	 * <li>A directory to be deleted does not have to be empty.</li>
 	 * <li>No exceptions are thrown when a file or directory cannot be deleted.</li>
 	 * </ul>
-	 *
 	 * @param file file or directory to delete, can be <code>null</code>
 	 * @return <code>true</code> if the file or directory was deleted, otherwise
 	 *         <code>false</code>
@@ -89,7 +87,6 @@ public class FileUtils {
 
 	/**
 	 * Cleans a directory without deleting it.
-	 *
 	 * @param directory directory to clean
 	 * @throws IOException in case cleaning is unsuccessful
 	 */
@@ -132,11 +129,10 @@ public class FileUtils {
 	 * <li>You get exceptions when a file or directory cannot be deleted.
 	 * (java.io.File methods returns a boolean)</li>
 	 * </ul>
-	 *
 	 * @param file file or directory to delete, must not be <code>null</code>
-	 * @throws NullPointerException  if the directory is <code>null</code>
+	 * @throws NullPointerException if the directory is <code>null</code>
 	 * @throws FileNotFoundException if the file was not found
-	 * @throws IOException           in case deletion is unsuccessful
+	 * @throws IOException in case deletion is unsuccessful
 	 */
 	public static void forceDelete(File file) throws IOException {
 		if (file.isDirectory()) {
@@ -158,7 +154,6 @@ public class FileUtils {
 	 * <p/>
 	 * Will not return true if there is a Symbolic Link anywhere in the path,
 	 * only if the specific file is.
-	 *
 	 * @param file the file to check
 	 * @return true if the file is a Symbolic Link
 	 * @throws IOException if an IO error occurs while checking the file
@@ -184,8 +179,9 @@ public class FileUtils {
 	}
 
 	public static void moveDirectory(File dir, File dest) {
-		if (!dest.exists())
+		if (!dest.exists()) {
 			dest.mkdirs();
+		}
 		for (File file : dir.listFiles()) {
 			if (file.isDirectory()) {
 				File newDir = new File(dest, file.getName());

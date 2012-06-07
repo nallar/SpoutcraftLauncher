@@ -50,8 +50,9 @@ public class DownloadManager {
 	}
 
 	public Download getUnrestrictedDownload(String url, String out, double key) throws MalformedURLException {
-		if (key != this.key)
+		if (key != this.key) {
 			throw new SkinSecurityException(new StringBuilder().append("The skin '").append(Launcher.getSkinManager().getEnabledSkin().getDescription().getName()).append("' used the wrong key to unlock the DownloadManager.").toString());
+		}
 		return new Download(url, out);
 	}
 

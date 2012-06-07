@@ -36,34 +36,24 @@ import com.beust.jcommander.internal.Lists;
 public class StartupParameters {
 	@Parameter
 	private List<String> parameters = Lists.newArrayList();
-
 	@Parameter(names = {"-username", "-user", "-u"}, description = "Minecraft Username")
 	private String user = null;
-
 	@Parameter(names = {"-password", "-pass", "-p"}, description = "Minecraft Password")
 	private String pass = null;
-
 	@Parameter(names = {"-server", "-host", "-join", "-j", "-h", "-s"}, description = "Minecraft Server to join")
 	private String server = null;
-
 	@Parameter(names = {"-portable", "--portable", "-pmode", "-portable_mode", "-pm"}, description = "Portable Mode")
 	private boolean portable = false;
-
 	@Parameter(names = {"-safe", "-smode", "-safe_mode", "-sm"}, description = "Safe Mode")
 	private boolean safe_mode = false;
-
 	@Parameter(names = {"-debug", "--debug", "-verbose", "-v", "-d"}, description = "Debug mode")
 	private boolean debug = false;
-
 	@Parameter(names = {"-proxy_host"}, description = "HTTP Proxy Host")
 	private String proxyHost = null;
-
 	@Parameter(names = {"-proxy_port"}, description = "HTTP Proxy Port")
 	private String proxyPort = null;
-
 	@Parameter(names = {"-proxy_user"}, description = "HTTP Proxy Username")
 	private String proxyUser = null;
-
 	@Parameter(names = {"-proxy_password"}, description = "HTTP Proxy Password")
 	private String proxyPassword = null;
 
@@ -80,8 +70,9 @@ public class StartupParameters {
 	}
 
 	public String getServer() {
-		if (server == null)
+		if (server == null) {
 			return null;
+		}
 		if (server.contains(":")) {
 			return server.substring(0, server.indexOf(":"));
 		}
@@ -89,8 +80,9 @@ public class StartupParameters {
 	}
 
 	public String getPort() {
-		if (server == null)
+		if (server == null) {
 			return null;
+		}
 		if (server.contains(":")) {
 			return server.substring(server.indexOf(":") + 1);
 		}
@@ -125,10 +117,12 @@ public class StartupParameters {
 
 	private class ProxyAuthenticator extends Authenticator {
 		final String user, pass;
+
 		ProxyAuthenticator(String user, String pass) {
 			this.user = user;
 			this.pass = pass;
 		}
+
 		protected PasswordAuthentication getPasswordAuthentication() {
 			return new PasswordAuthentication(user, pass.toCharArray());
 		}
